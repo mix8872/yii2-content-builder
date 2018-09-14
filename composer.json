@@ -1,0 +1,27 @@
+{
+    "name": "mix8872/yii2-content-builder",
+    "description": "The module is designed for simplified construction of site pages.",
+    "type": "yii2-extension",
+    "keywords": ["yii2","extension"],
+    "license": "GPL-3.0+",
+    "authors": [
+        {
+            "name": "mix8872",
+            "email": "mix8872@gmail.com"
+        },
+		{
+            "name": "infernotiv",
+            "email": "shevkoplias.mk@yandex.ru"
+        }
+    ],
+    "require": {
+		"php": ">=7.0.0",
+        "yiisoft/yii2": "~2.0.0",
+		"intervention/image": "*"
+    },
+    "autoload": {
+        "psr-4": {
+            "mix8872\\contentBuilder\\": "src"
+        }
+    }
+}
