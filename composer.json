@@ -23,7 +23,7 @@
 		"psr/log": "~1.0",
 		"psr/container": "~1.0",
 		"psr/cache": "~1.0",
-        "guzzlehttp/psr7": "~1.5",
+        "guzzlehttp/psr7": "~1.4",
         "guzzlehttp/promises": "~1.4",
         "guzzlehttp/guzzle": "~6.3",
         "spatie/dropbox-api": "~1.6",
