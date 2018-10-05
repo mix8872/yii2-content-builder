@@ -37,12 +37,12 @@
         "aws/aws-sdk-php": "~3.62",
         "monolog/monolog": "~1",
         "pimple/pimple": "~3.2",
-        "symfony/polyfill-mbstring": "~1.9",
-        "symfony/http-foundation": "~2.7",
+        "symfony/polyfill-mbstring": "*",
+        "symfony/http-foundation": "*",
         "symfony/event-dispatcher": "*",
-        "symfony/debug": "~2.8",
-        "symfony/polyfill-ctype": "1.9.0",
-        "symfony/http-kernel": "~2.7"
+        "symfony/debug": "*",
+        "symfony/polyfill-ctype": "*",
+        "symfony/http-kernel": "*"
     },
     "autoload": {
         "psr-0": {
