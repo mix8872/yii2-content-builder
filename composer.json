@@ -39,7 +39,7 @@
         "pimple/pimple": "~3.2",
         "symfony/polyfill-mbstring": "~1.9",
         "symfony/http-foundation": "~2.7",
-        "symfony/event-dispatcher": "2.7.9",
+        "symfony/event-dispatcher": "~4.1",
         "symfony/debug": "~2.8",
         "symfony/polyfill-ctype": "1.9.0",
         "symfony/http-kernel": "~2.7"
