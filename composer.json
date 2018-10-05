@@ -35,14 +35,14 @@
         "league/flysystem-cached-adapter": "~1.0",
         "mtdowling/jmespath.php": "~2.4",
         "aws/aws-sdk-php": "~3.62",
-        "monolog/monolog": "1.x-dev",
+        "monolog/monolog": "~1",
         "pimple/pimple": "dev-master",
         "symfony/polyfill-mbstring": "dev-master",
-        "symfony/http-foundation": "2.7.x-dev",
-        "symfony/event-dispatcher": "2.7.x-dev",
-        "symfony/debug": "2.8.x-dev",
+        "symfony/http-foundation": "~2.7",
+        "symfony/event-dispatcher": "~2.7",
+        "symfony/debug": "~2.8",
         "symfony/polyfill-ctype": "1.9.0",
-        "symfony/http-kernel": "2.7.x-dev"
+        "symfony/http-kernel": "~2.7"
     },
     "autoload": {
         "psr-0": {
