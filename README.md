@@ -28,4 +28,14 @@ Usage
 Once the extension is installed, simply use it in your code by  :
 
 ```php
-<?= \mix8872\contentBuilder\AutoloadExample::widget(); ?>```
+<?php
+
+use mix8872\contentBuilder\widgets\ContentBuilder;
+
+...
+
+<?= $form->field($model, 'some_text_field')->widget(ContentBuilder::class) ?>
+
+...
+
+```

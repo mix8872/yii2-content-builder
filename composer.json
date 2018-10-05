@@ -1,6 +1,7 @@
 {
     "name": "mix8872/yii2-content-builder",
     "description": "The module is designed for simplified construction of site pages.",
+	"version": "0.1.0",
     "type": "yii2-extension",
     "keywords": ["yii2","extension"],
     "license": "GPL-3.0+",
@@ -17,11 +18,46 @@
     "require": {
 		"php": ">=7.0.0",
         "yiisoft/yii2": "~2.0.0",
-		"intervention/image": "*"
+        "ralouphie/getallheaders": "~2.0",
+        "psr/http-message": "dev-master",
+        "guzzlehttp/psr7": "dev-master",
+        "guzzlehttp/promises": "dev-master",
+        "guzzlehttp/guzzle": "dev-master",
+        "spatie/dropbox-api": "~1.6",
+        "league/flysystem": "~1.0",
+        "spatie/flysystem-dropbox": "~1.0",
+        "microsoft/azure-storage": "dev-master",
+        "league/flysystem-azure": "dev-master",
+        "psr/cache": "dev-master",
+        "league/flysystem-cached-adapter": "~1.0",
+        "mtdowling/jmespath.php": "~2.4",
+        "aws/aws-sdk-php": "~3.62",
+        "psr/log": "dev-master",
+        "league/flysystem-aws-s3-v3": "~1.0",
+        "monolog/monolog": "1.x-dev",
+        "psr/container": "dev-master",
+        "pimple/pimple": "dev-master",
+        "symfony/polyfill-mbstring": "dev-master",
+        "symfony/http-foundation": "2.7.x-dev",
+        "symfony/event-dispatcher": "2.7.x-dev",
+        "symfony/debug": "2.8.x-dev",
+        "symfony/polyfill-ctype": "dev-master",
+        "symfony/http-kernel": "2.7.x-dev",
+        "cksource/ckfinder": "dev-master"
     },
+    "repositories": [
+        {
+            "type": "git",
+            "url": "git@github.com:cksource/ckfinder-connector-php.git",
+            "reference": "db00f439fcb23a36d45e1af22b740988bfdda85b"
+        }
+    ],
     "autoload": {
+        "psr-0": {
+            "CKSource": "src/"
+        },
         "psr-4": {
-            "mix8872\\contentBuilder\\": "src"
+            "CKSource\\CKFinder\\Plugin\\": "plugins/"
         }
     }
 }
