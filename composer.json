@@ -42,16 +42,8 @@
         "symfony/event-dispatcher": "2.7.x-dev",
         "symfony/debug": "2.8.x-dev",
         "symfony/polyfill-ctype": "dev-master",
-        "symfony/http-kernel": "2.7.x-dev",
-        "cksource/ckfinder": "dev-master"
+        "symfony/http-kernel": "2.7.x-dev"
     },
-    "repositories": [
-        {
-            "type": "git",
-            "url": "git@github.com:cksource/ckfinder-connector-php.git",
-            "reference": "db00f439fcb23a36d45e1af22b740988bfdda85b"
-        }
-    ],
     "autoload": {
         "psr-0": {
             "CKSource": "src/"
