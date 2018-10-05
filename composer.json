@@ -41,7 +41,7 @@
         "symfony/http-foundation": "2.7.x-dev",
         "symfony/event-dispatcher": "2.7.x-dev",
         "symfony/debug": "2.8.x-dev",
-        "symfony/polyfill-ctype": "dev-master",
+        "symfony/polyfill-ctype": "~1.9",
         "symfony/http-kernel": "2.7.x-dev"
     },
     "autoload": {
