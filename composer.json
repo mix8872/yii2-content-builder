@@ -20,11 +20,8 @@
         "yiisoft/yii2": "~2.0.0"
     },
     "autoload": {
-        "psr-0": {
-            "CKSource": "src/"
-        },
         "psr-4": {
-            "CKSource\\CKFinder\\Plugin\\": "plugins/"
+            "mix8872\\contentBuilder\\": "src"
         }
     }
 }
