@@ -7,6 +7,7 @@ use Yii;
 class Module extends \yii\base\Module
 {
     public $elements;
+    public $imageUpload;
 
     /*
      * {@inheritdoc}
@@ -18,6 +19,10 @@ class Module extends \yii\base\Module
         $this->setViewPath('@vendor/mix8872/yii2-content-builder/src/views');
         $this->registerTranslations();
         $this->setElements();
+        $this->setImageUpload();
+        if (empty($this->imageUpload['uploadRolesAccess'])) {
+            $this->imageUpload['uploadRolesAccess'] = ['@'];
+        }
     }
 
     /**
@@ -31,6 +36,16 @@ class Module extends \yii\base\Module
             'basePath' => '@vendor/mix8872/yii2-content-builder/src/messages',
         ];
 
+    }
+
+    private function setImageUpload()
+    {
+        $this->imageUpload = \yii\helpers\ArrayHelper::merge([
+            'uploadRolesAccess' => [],
+            'uploadUrl' => '/uploads/images',
+            'origResize' => false,
+            'sizes' => [],
+        ], $this->imageUpload);
     }
 
     /*

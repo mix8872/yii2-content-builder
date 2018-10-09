@@ -13,7 +13,8 @@ $this->registerJS('
     window.contentBuilder_' . $rootId . ' = {
         outputFieldName: "' . $baseClass . preg_replace("/^(\[\w+\])(\w+)/ui", "\$1[$2]", $attribute) . '",
         sections: ' . $model->content . ',
-        elementsConfig: ' . json_encode($config) . '
+        elementsConfig: ' . json_encode($config) . ',
+        uploadsUrl: "/sdfdn/"
     };
 
     $(document).ready(function(){ 
