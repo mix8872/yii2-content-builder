@@ -3,6 +3,7 @@
 \mix8872\contentBuilder\assets\ContentBuilderAsset::register($this);
 
 use yii\helpers\Html;
+use yii\helpers\Url;
 use yii\helpers\StringHelper;
 
 $baseClass = StringHelper::basename(get_class($model));
@@ -14,7 +15,7 @@ $this->registerJS('
         outputFieldName: "' . $baseClass . preg_replace("/^(\[\w+\])(\w+)/ui", "\$1[$2]", $attribute) . '",
         sections: ' . $model->content . ',
         elementsConfig: ' . json_encode($config) . ',
-        uploadsUrl: "/sdfdn/"
+        uploadUrl: \'' . Url::to(['/content-builder/default/upload']) . '\'
     };
 
     $(document).ready(function(){ 

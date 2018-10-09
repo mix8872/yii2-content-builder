@@ -63,7 +63,7 @@ class DefaultController extends \yii\web\Controller
     {
         Yii::$app->response->format = \yii\web\Response::FORMAT_JSON;
 
-        $this->file = UploadedFile::getInstanceByName('upload');
+        $this->file = UploadedFile::getInstanceByName('image');
 
         if ($this->file) {
             $imageUpload = $this->module->imageUpload;
