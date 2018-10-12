@@ -13,7 +13,7 @@ $configJson = json_encode($config);
 $this->registerJS('
     window.contentBuilder_' . $rootId . ' = {
         outputFieldName: "' . $baseClass . preg_replace("/^(\[\w+\])(\w+)/ui", "\$1[$2]", $attribute) . '",
-        sections: ' . $model->content . ',
+        sections: \'' . $model->content . '\',
         elementsConfig: ' . json_encode($config) . ',
         uploadUrl: \'' . Url::to(['/content-builder/default/upload']) . '\'
     };
