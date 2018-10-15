@@ -63,8 +63,16 @@ class Module extends \yii\base\Module
                     'size' => [
                         'name' => Yii::t('contentbuilder', 'Размер'),
                         'attr' => 'size',
-                        'type' => 'string',
-                        'default' => 'h1'
+                        'type' => 'select',
+                        'default' => 'h2',
+                        'variants' => [
+                            'h1',
+                            'h2',
+                            'h3',
+                            'h4',
+                            'h5',
+                            'h6'
+                        ]
                     ],
                     'content' => [
                         'name' => Yii::t('contentbuilder', 'Заголовок'),
@@ -100,6 +108,12 @@ class Module extends \yii\base\Module
                 'icon' => 'fa fa-file-image-o',
                 'class' => 'contentBuilder\widgets\ImageWidget',
                 'attributes' => [
+                    'url' => [
+                        'name' => Yii::t('contentbuilder', 'Ссылка'),
+                        'attr' => 'url',
+                        'type' => 'image',
+                        'default' => ''
+                    ],
                     'width' => [
                         'name' => Yii::t('contentbuilder', 'Ширина'),
                         'attr' => 'width',
@@ -110,12 +124,6 @@ class Module extends \yii\base\Module
                         'name' => Yii::t('contentbuilder', 'Высота'),
                         'attr' => 'height',
                         'type' => 'int',
-                        'default' => ''
-                    ],
-                    'url' => [
-                        'name' => Yii::t('contentbuilder', 'Ссылка'),
-                        'attr' => 'url',
-                        'type' => 'string',
                         'default' => ''
                     ],
                     'title' => [
@@ -144,6 +152,12 @@ class Module extends \yii\base\Module
                 'icon' => 'fa fa-file-video-o',
                 'class' => 'contentBuilder\widgets\VideoWidget',
                 'attributes' => [
+                    'url' => [
+                        'name' => Yii::t('contentbuilder', 'Ссылка'),
+                        'attr' => 'url',
+                        'type' => 'string',
+                        'default' => ''
+                    ],
                     'loop' => [
                         'name' => Yii::t('contentbuilder', 'Повторять'),
                         'attr' => 'loop',
@@ -180,12 +194,6 @@ class Module extends \yii\base\Module
                         'type' => 'string',
                         'default' => ''
                     ],
-                    'url' => [
-                        'name' => Yii::t('contentbuilder', 'Ссылка'),
-                        'attr' => 'url',
-                        'type' => 'string',
-                        'default' => ''
-                    ]
                 ]
             ],
         ], $this->elements);

@@ -86,8 +86,10 @@ class DefaultController extends \yii\web\Controller
                     }
                     $out['default'] = Url::to(['image', 'f' => $filename]);
                 } else {
+                    $url = Url::to(['image', 'f' => $filename]);
+                    $url = preg_replace('/\/(ru|en)\//ui', '/', $url);
                     $out = [
-                        'data' => ['link' => Url::to(['image', 'f' => $filename])]
+                        'data' => ['link' => $url]
                     ];
                 }
                 return $out;
