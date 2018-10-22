@@ -152,9 +152,15 @@ class Module extends \yii\base\Module
                 'icon' => 'fa fa-file-video-o',
                 'class' => 'contentBuilder\widgets\VideoWidget',
                 'attributes' => [
-                    'url' => [
-                        'name' => Yii::t('contentbuilder', 'Ссылка'),
-                        'attr' => 'url',
+                    'url-mp4' => [
+                        'name' => Yii::t('contentbuilder', 'Ссылка mp4'),
+                        'attr' => 'url-mp4',
+                        'type' => 'string',
+                        'default' => ''
+                    ],
+                    'url-webm' => [
+                        'name' => Yii::t('contentbuilder', 'Ссылка webm'),
+                        'attr' => 'url-webm',
                         'type' => 'string',
                         'default' => ''
                     ],
