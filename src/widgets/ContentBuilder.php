@@ -27,18 +27,20 @@ class ContentBuilder extends \yii\widgets\InputWidget
     public function run()
     {
         $module = Yii::$app->getModule('content-builder');
-        $rootId = rand(100000,999999);
+        $rootId = rand(100000, 999999);
 
         foreach ($module->elements as &$element) {
             $newAttr = array();
-            foreach($element['attributes'] as $attribute) {
-                $newAttr[] = $attribute;
+            if (isset($element['attributes'])) {
+                foreach ($element['attributes'] as $attribute) {
+                    $newAttr[] = $attribute;
+                }
             }
             $element['attributes'] = $newAttr;
         }
 
         if ($this->hasModel()) {
-            return $this->render('index',[
+            return $this->render('index', [
                 'model' => $this->model,
                 'attribute' => $this->attribute,
                 'config' => $module->elements,
