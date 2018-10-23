@@ -40,6 +40,11 @@ class DefaultController extends \yii\web\Controller
                         'allow' => true,
                         'roles' => $module->imageUpload['uploadRolesAccess'] ?? ['@'],
                     ],
+                    [
+                        'allow' => true,
+                        'actions' => ['image'],
+                        'roles' => ['?', '@']
+                    ],
                 ],
             ],
         ];
