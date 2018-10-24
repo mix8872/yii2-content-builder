@@ -114,14 +114,18 @@ class DefaultController extends \yii\web\Controller
 
         $finfo = pathinfo($file);
         if ($finfo['extension'] === 'svg') {
-            /*Yii::$app->response->headers->set('Content-Type', 'image/svg; charset=UTF-8');
-            $this->layout = 'img';
+
+//            header('Content-Type: image/svg; charset=UTF-8');
+            Yii::$app->response->format = \yii\web\Response::FORMAT_RAW;
+            Yii::$app->response->headers->add('Content-Type', 'image/svg+xml');
+//            Yii::$app->response->headers->set('Content-Type', 'image/svg; charset=UTF-8');
+            /*$this->layout = 'img';
             return $this->render('img', [
                 'file' => file_get_contents($file)
             ]);*/
 
-            return Yii::$app->response->xSendFile($file, $finfo['basename'], ['contentType' => 'image/svg']);
-//                return file_get_contents($file);
+//            return Yii::$app->response->xSendFile($file, $finfo['basename'],['inline' => true, 'contentType' => 'image/svg']);
+            return file_get_contents($file);
         } else {
             if ($s) {
                 return Image::getImagine()
