@@ -110,16 +110,20 @@ class DefaultController extends \yii\web\Controller
         $file = Yii::getAlias('@webroot' . $imageUpload['uploadUrl']) . '/' . $f;
         if (file_exists($file)) {
             $ext = pathinfo($file)['extension'];
-            if ($s) {
-                return Image::getImagine()
-                    ->open($file)
-                    ->thumbnail(new Box((int)$s, 10000))
-                    ->show($ext, []);
+            if ($ext === 'svg') {
+                return file_get_contents($file);
             } else {
-                return Image::getImagine()
-                    ->open($file)
-                    ->show($ext, []);
-            };
+                if ($s) {
+                    return Image::getImagine()
+                        ->open($file)
+                        ->thumbnail(new Box((int)$s, 10000))
+                        ->show($ext, []);
+                } else {
+                    return Image::getImagine()
+                        ->open($file)
+                        ->show($ext, []);
+                };
+            }
         }
 
         throw new NotFoundHttpException("Image doen't exist!");
