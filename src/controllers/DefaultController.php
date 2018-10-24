@@ -108,25 +108,33 @@ class DefaultController extends \yii\web\Controller
         $f = trim(strip_tags($f));
         $imageUpload = $this->module->imageUpload;
         $file = Yii::getAlias('@webroot' . $imageUpload['uploadUrl']) . '/' . $f;
-        if (file_exists($file)) {
-            $ext = pathinfo($file)['extension'];
-            if ($ext === 'svg') {
-                return file_get_contents($file);
-            } else {
-                if ($s) {
-                    return Image::getImagine()
-                        ->open($file)
-                        ->thumbnail(new Box((int)$s, 10000))
-                        ->show($ext, []);
-                } else {
-                    return Image::getImagine()
-                        ->open($file)
-                        ->show($ext, []);
-                };
-            }
+        if (!file_exists($file)) {
+            throw new NotFoundHttpException("Image doen't exist!");
         }
 
-        throw new NotFoundHttpException("Image doen't exist!");
+        $finfo = pathinfo($file);
+        if ($finfo['extension'] === 'svg') {
+            /*Yii::$app->response->headers->set('Content-Type', 'image/svg; charset=UTF-8');
+            $this->layout = 'img';
+            return $this->render('img', [
+                'file' => file_get_contents($file)
+            ]);*/
+
+            return Yii::$app->response->xSendFile($file, $finfo['basename'], ['contentType' => 'image/svg']);
+//                return file_get_contents($file);
+        } else {
+            if ($s) {
+                return Image::getImagine()
+                    ->open($file)
+                    ->thumbnail(new Box((int)$s, 10000))
+                    ->show($finfo['extension'], []);
+            } else {
+                return Image::getImagine()
+                    ->open($file)
+                    ->show($finfo['extension'], []);
+            };
+        }
+
     }
 
     private function _saveFile($path)
