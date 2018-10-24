@@ -33,6 +33,15 @@ class DefaultController extends \yii\web\Controller
                     'upload' => ['POST'],
                 ],
             ],
+            [
+                'class' => \yii\filters\Cors::class,
+                'cors' => [
+                    'Origin' => ['*'],
+                    'Access-Control-Request-Method' => ['GET'],
+                    'Access-Control-Allow-Credentials' => true,
+                    'Access-Control-Max-Age' => 3600,
+                ],
+            ],
             'access' => [
                 'class' => \yii\filters\AccessControl::class,
                 'rules' => [
