@@ -33,15 +33,6 @@ class DefaultController extends \yii\web\Controller
                     'upload' => ['POST'],
                 ],
             ],
-            [
-                'class' => \yii\filters\Cors::class,
-                'cors' => [
-                    'Origin' => ['*'],
-                    'Access-Control-Request-Method' => ['GET'],
-                    'Access-Control-Allow-Credentials' => true,
-                    'Access-Control-Max-Age' => 3600,
-                ],
-            ],
             'access' => [
                 'class' => \yii\filters\AccessControl::class,
                 'rules' => [
@@ -65,12 +56,6 @@ class DefaultController extends \yii\web\Controller
             $this->enableCsrfValidation = false;
         }
         return parent::beforeAction($action);
-    }
-
-    public function actionIndex()
-    {
-        $module = Yii::$app->controller->module;
-        return 'Hello';
     }
 
     public function actionUpload($single = 0)
@@ -123,17 +108,8 @@ class DefaultController extends \yii\web\Controller
 
         $finfo = pathinfo($file);
         if ($finfo['extension'] === 'svg') {
-
-//            header('Content-Type: image/svg; charset=UTF-8');
             Yii::$app->response->format = \yii\web\Response::FORMAT_RAW;
             Yii::$app->response->headers->add('Content-Type', 'image/svg+xml');
-//            Yii::$app->response->headers->set('Content-Type', 'image/svg; charset=UTF-8');
-            /*$this->layout = 'img';
-            return $this->render('img', [
-                'file' => file_get_contents($file)
-            ]);*/
-
-//            return Yii::$app->response->xSendFile($file, $finfo['basename'],['inline' => true, 'contentType' => 'image/svg']);
             return file_get_contents($file);
         } else {
             if ($s) {
@@ -150,7 +126,7 @@ class DefaultController extends \yii\web\Controller
 
     }
 
-    private function _saveFile($path)
+    protected function _saveFile($path)
     {
         if ($this->file) {
             $imageUpload = $this->module->imageUpload;

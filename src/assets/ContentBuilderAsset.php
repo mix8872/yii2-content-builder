@@ -14,10 +14,10 @@ class ContentBuilderAsset extends \yii\web\AssetBundle
     public $sourcePath = '@vendor/mix8872/yii2-content-builder/src/assets';
     public $css = [
         'main.css',
-        'editor.css',
     ];
     public $js = [
-//        'service-worker.js',
-        'main.js'
+        'inline.js',
+        'chunk.js',
+        'main.chunk.js'
     ];
 }

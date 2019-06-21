@@ -58,7 +58,7 @@ class Module extends \yii\base\Module
                 'label' => Yii::t('contentbuilder', 'Заголовок'),
                 'description' => Yii::t('contentbuilder', 'Заголовок'),
                 'icon' => 'fa fa-header',
-                'class' => 'contentBuilder\widgets\HeaderWidget',
+                'class' => 'mix8872\contentBuilder\widgets\frontend\HeaderWidget',
                 'attributes' => [
                     'size' => [
                         'name' => Yii::t('contentbuilder', 'Размер'),
@@ -86,13 +86,13 @@ class Module extends \yii\base\Module
                 'label' => Yii::t('contentbuilder', 'Текст'),
                 'description' => Yii::t('contentbuilder', 'Текст'),
                 'icon' => 'fa fa-file-text-o',
-                'class' => 'contentBuilder\widgets\TextWidget',
+                'class' => 'mix8872\contentBuilder\widgets\frontend\TextWidget',
                 'attributes' => [
                     'height' => [
                         'name' => Yii::t('contentbuilder', 'Высота'),
                         'attr' => 'height',
                         'type' => 'string',
-                        'default' => '100px'
+                        'default' => ''
                     ],
                     'content' => [
                         'name' => Yii::t('contentbuilder', 'Контент'),
@@ -106,7 +106,7 @@ class Module extends \yii\base\Module
                 'label' => Yii::t('contentbuilder', 'Картинка'),
                 'description' => Yii::t('contentbuilder', 'Картинка'),
                 'icon' => 'fa fa-file-image-o',
-                'class' => 'contentBuilder\widgets\ImageWidget',
+                'class' => 'mix8872\contentBuilder\widgets\frontend\ImageWidget',
                 'attributes' => [
                     'url' => [
                         'name' => Yii::t('contentbuilder', 'Ссылка'),
@@ -150,18 +150,24 @@ class Module extends \yii\base\Module
                 'label' => Yii::t('contentbuilder', 'Видео'),
                 'description' => Yii::t('contentbuilder', 'Видео'),
                 'icon' => 'fa fa-file-video-o',
-                'class' => 'contentBuilder\widgets\VideoWidget',
+                'class' => 'mix8872\contentBuilder\widgets\frontend\VideoWidget',
                 'attributes' => [
-                    'url-mp4' => [
+                    'urlMp4' => [
                         'name' => Yii::t('contentbuilder', 'Ссылка mp4'),
                         'attr' => 'url-mp4',
                         'type' => 'string',
                         'default' => ''
                     ],
-                    'url-webm' => [
+                    'urlWebm' => [
                         'name' => Yii::t('contentbuilder', 'Ссылка webm'),
                         'attr' => 'url-webm',
                         'type' => 'string',
+                        'default' => ''
+                    ],
+                    'poster' => [
+                        'name' => Yii::t('contentbuilder', 'Постер'),
+                        'attr' => 'url',
+                        'type' => 'image',
                         'default' => ''
                     ],
                     'loop' => [
