@@ -24,11 +24,27 @@ class ContentParser
         $this->dom = new DOMDocument();
     }
 
-    public function parse(array $data)
+    public function parse(string $dataString)
     {
+        try {
+            $data = json_decode($dataString);
+        } catch (\Exception $e) {
+            error_log('Current string is not valid JSON');
+            return null;
+        }
+
+        if (!is_array($data)) {
+            return null;
+        }
+
+        if (!$this->_validate($data)) {
+            error_log('Current data is not valid contentBuilder data');
+            return null;
+        }
+
         foreach ($data as $sectionData) {
             $section = $this->_makeSection($sectionData);
-            $container = $this->_makeContiner($sectionData);
+            $container = $this->_makeContainer($sectionData);
             if (!$section || !$container) {
                 continue;
             }
@@ -59,6 +75,49 @@ class ContentParser
         return html_entity_decode($this->dom->saveHTML());
     }
 
+    protected function _validate($data)
+    {
+        foreach ($data as $sectionData) {
+            switch (false) {
+                case $sectionData instanceof \stdClass:
+                case property_exists($sectionData, 'sectionId'):
+                case property_exists($sectionData, 'sectionClassName'):
+                case property_exists($sectionData, 'containerClassName'):
+                case property_exists($sectionData, 'bgColor'):
+                case property_exists($sectionData, 'bgImg'):
+                case property_exists($sectionData, 'isFluid'):
+                case property_exists($sectionData, 'noPadding'):
+                case property_exists($sectionData, 'rows'):
+                    return false;
+            }
+            foreach ($sectionData->rows as $rowData) {
+                switch (false) {
+                    case $rowData instanceof \stdClass:
+                    case property_exists($rowData, 'className'):
+                    case property_exists($rowData, 'cols'):
+                    return false;
+                }
+                foreach ($rowData->cols as $colData) {
+                    switch (false) {
+                        case $colData instanceof \stdClass:
+                        case property_exists($colData, 'className'):
+                        case property_exists($colData, 'items'):
+                            return false;
+                    }
+                    foreach ($colData->items as $itemData) {
+                        switch (false) {
+                            case $itemData instanceof \stdClass:
+                            case property_exists($itemData, 'className'):
+                            case property_exists($itemData, 'htmlId'):
+                                return false;
+                        }
+                    }
+                }
+            }
+        }
+        return true;
+    }
+
     protected function _makeSection($sectionData)
     {
         if ($sectionData instanceof \stdClass) {
@@ -84,7 +143,7 @@ class ContentParser
         return null;
     }
 
-    protected function _makeContiner($sectionData)
+    protected function _makeContainer($sectionData)
     {
         if ($sectionData instanceof \stdClass) {
             $container = $this->dom->createElement('div');
@@ -147,10 +206,17 @@ class ContentParser
                 if (class_exists($itemConfig['class'])) {
                     $widget = new $itemConfig['class']();
                     if ($widget instanceof Widget) {
-                        $widgetConfig = array_merge([
-                            'className' => $itemData->className,
-                            'htmlId' => $itemData->htmlId
-                        ], (array)$itemData->attributes);
+                        if (isset($itemData->attributes)) {
+                            $widgetConfig = array_merge([
+                                'className' => $itemData->className,
+                                'htmlId' => $itemData->htmlId
+                            ], (array)$itemData->attributes);
+                        } else {
+                            $widgetConfig = [
+                                'className' => $itemData->className,
+                                'htmlId' => $itemData->htmlId
+                            ];
+                        }
                         foreach ($widgetConfig as $wConfName => $wConfValue) {
                             if (!$widget->hasProperty($wConfName)) {
                                 unset($widgetConfig[$wConfName]);

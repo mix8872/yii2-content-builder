@@ -1,7 +1,7 @@
 {
     "name": "mix8872/yii2-content-builder",
     "description": "The module is designed for simplified construction of site pages.",
-	"version": "0.1.0",
+	"version": "1.0.0",
     "type": "yii2-extension",
     "keywords": ["yii2","module","widget"],
     "license": "GPL-3.0+",
