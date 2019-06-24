@@ -116,21 +116,24 @@ class ContentParser
     {
         if ($colData instanceof \stdClass) {
             $col = $this->dom->createElement('div');
-            $colClassName = '';
-            $colData->className
-                ? $colClassName .= 'row ' . $colData->className
-                : $colClassName .= 'row';
+            $colClassNames = [];
             foreach (get_object_vars($colData) as $colAttrName => $colAttrVal) {
                 if ($colAttrName !== 'id' && is_int($colAttrVal) && $colAttrVal !== -1) {
                     if (strpos($colAttrName, 'offset') === false) {
-                        $colClassName .= ' col' . ($colAttrName !== 'xs' ? "-$colAttrName" : '') . ($colAttrVal !== 0 ? "-$colAttrVal" : '');
+                        $colClassNames[] = 'col' . ($colAttrName !== 'xs' ? "-$colAttrName" : '') . ($colAttrVal !== 0 ? "-$colAttrVal" : '');
                     } else {
                         $colAttrName = strtolower(str_replace('offset', '', $colAttrName));
-                        $colClassName .= ' offset' . ($colAttrName !== 'xs' ? "-$colAttrName" : '') . "-$colAttrVal";
+                        $colClassNames[] = 'offset' . ($colAttrName !== 'xs' ? "-$colAttrName" : '') . "-$colAttrVal";
                     }
                 }
             }
-            $col->setAttribute('class', $colClassName);
+            if (!$colClassNames) {
+                $colClassNames[] = 'col-12';
+            }
+            if ($colData->className) {
+                $colClassNames[] = $colData->className;
+            }
+            $col->setAttribute('class', implode(' ', $colClassNames));
             return $col;
         }
         return null;

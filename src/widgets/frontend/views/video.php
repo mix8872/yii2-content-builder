@@ -12,9 +12,9 @@
     array_keys($attributes)
 )) ?>>
     <?php if ($urlMp4): ?>
-        <source src="v<?= $urlMp4 ?>" type="video/mp4">
+        <source src='<?= $urlMp4 ?>' type='video/mp4'>
     <?php endif; ?>
     <?php if ($urlWebm): ?>
-        <source src="<?= $urlWebm ?>" type="video/webm">
+        <source src='<?= $urlWebm ?>' type='video/webm'>
     <? endif; ?>
 </video>
